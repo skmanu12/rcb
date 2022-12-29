@@ -13,22 +13,23 @@ import io.restassured.specification.ResponseSpecification;
 import junit.framework.Assert;
 import payloads.payloads;
 
-public class RCBTeamPlayers {
+public class Verify_RCB_TeamAsAtleastOneWicketKeeper {
 
 	@Test
 	public void verifyTeamAsOnly4ForeignPlayers() {
-		String[] arr = { "India" };
+		
 		payloads p = new payloads();
 		JsonPath js = new JsonPath(p.rcbTeams());
-		System.out.println(js.get("name"));
 		
-		System.out.println(js.get("player.size()"));
+		
 		int teamSize = js.getInt("player.size()");
+		System.out.println(teamSize);
+		
 		int count = 0;
 		for (int i = 0; i < teamSize; i++) {
-			String country = js.getString("player[" + i + "].country");
+			String role = js.getString("player[" + i + "].role");
 
-			if (!"India".equalsIgnoreCase(country)) {
+			if ("Wicket-keeper".equalsIgnoreCase(role)) {
 				//System.out.println(js.getString("player[" + i + "].name"));
 				count++;
 			}
@@ -36,10 +37,10 @@ public class RCBTeamPlayers {
 		}
 		System.out.println(count);
 
-		if (count > 4) {
-			System.out.println("Teams contains more than 4 Foreign players");
+		if (count >1) {
+			System.out.println("Teams contains more than 1 wicket-keeper");
 		} else {
-			System.out.println("Teams contains 4 Foreign players");
+			System.out.println("Teams contains atleast one wicket keper");
 		}
 	}
 

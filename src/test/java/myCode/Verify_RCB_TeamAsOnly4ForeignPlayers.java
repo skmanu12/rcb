@@ -10,7 +10,7 @@ import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import junit.framework.Assert;
+import org.junit.Assert;
 import payloads.payloads;
 
 public class Verify_RCB_TeamAsOnly4ForeignPlayers {
@@ -35,7 +35,8 @@ public class Verify_RCB_TeamAsOnly4ForeignPlayers {
 
 		}
 		System.out.println(count);
-
+		
+	
 		if (count >4) {
 			System.out.println("Teams contains more than 4 Foreign players");
 		} else {
